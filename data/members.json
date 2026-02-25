@@ -384,13 +384,15 @@
             }
         },
         {
-            "name": "Joseph Acernese",
-            "website": "https://josephacernese.github.io/",
-            "year": 2024,
+            "name": "Naol Denko",
+            "website": "https://naoldenko.com",
+            "year": 2025,
+            "role": "Founder & CEO @ CriticAI",
             "links": {
-                "github": "https://github.com/JosephAcernese",
-                "linkedin": "https://www.linkedin.com/in/joseph-acernese/"
+              "instagram": "https://instagram.com/naolmdenko",
+              "twitter": "https://x.com/naoldenko",
+              "linkedin": "https://linkedin.com/in/naol"
             }
-        }
+          }
     ]
 }
