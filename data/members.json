@@ -382,6 +382,17 @@
                 "linkedin": "https://www.linkedin.com/in/julien-serbanescu-6ba52a241/",
                 "github": "https://github.com/Julien-ser"
             }
-        }
+        },
+        {
+            "name": "Naol Denko",
+            "website": "https://naoldenko.com",
+            "year": 2025,
+            "role": "Founder & CEO @ CriticAI",
+            "links": {
+              "instagram": "https://instagram.com/naolmdenko",
+              "twitter": "https://x.com/naoldenko",
+              "linkedin": "https://linkedin.com/in/naol"
+            }
+          }
     ]
 }
