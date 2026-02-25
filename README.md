@@ -8,6 +8,15 @@ Live site: [www.uguelph.network](https://www.uguelph.network)
 
 ## Join the webring
 
+### Option 1: On-site form (no fork needed)
+
+1. Fill in the **Add your site** form on the homepage.
+2. Submit once.
+3. The server automatically creates a PR that appends your entry to `data/members.json`.
+4. A maintainer reviews and merges.
+
+### Option 2: Manual PR
+
 1. Add the widget to your site (template below).
 2. Fork this repo.
 3. Edit `data/members.json` and add your entry inside `sites`:
@@ -67,7 +76,14 @@ The badge uses the gryphon SVG (`gryphon.svg`).
 - Keep URLs absolute (`https://...`).
 - Keep the JSON valid in `data/members.json`.
 - **Optional:** Add a `role` field (e.g. "Software Engineer", "Student", "Founder") so visitors can search and filter by role.
+- Required fields for automation: `name`, `year`, `website`.
 - If you are not in CS, you can still make your own webring for your community.
+
+## Deployment config for form auto-PR
+
+To enable automatic PR creation from the on-site form, set these environment variables in your deployment platform:
+
+- `GITHUB_TOKEN`: GitHub token with `contents:write` and `pull_requests:write` on this repo.
 
 ## Attribution
 

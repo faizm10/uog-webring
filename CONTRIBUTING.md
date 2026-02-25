@@ -4,6 +4,15 @@ Thanks for contributing.
 
 ## Add your site
 
+### Automated path (recommended)
+
+1. Fill in the on-site submission form.
+2. Required fields: `name`, `year`, `website`. Optional links can be included.
+3. The backend validates your input and opens an automated PR.
+4. A maintainer reviews and merges.
+
+### Manual path
+
 1. Fork this repository.
 2. Edit `data/members.json` and add your entry inside `sites`:
 

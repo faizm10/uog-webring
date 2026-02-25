@@ -1,0 +1,293 @@
+name: Member Submission to PR
+
+on:
+  issues:
+    types: [opened, edited, reopened]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  submission-to-pr:
+    if: startsWith(github.event.issue.title, '[Add Member]')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Parse and validate submission
+        id: parse
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+
+            const issueBody = context.payload.issue.body || '';
+
+            const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            const getField = (label) => {
+              const regex = new RegExp(`###\\s*${escapeRegExp(label)}\\s*\\n([\\s\\S]*?)(?=\\n###\\s|$)`, 'i');
+              const match = issueBody.match(regex);
+              if (!match) return '';
+              const value = match[1].trim();
+              if (!value || /^_No response_$/i.test(value)) return '';
+              return value;
+            };
+
+            const normalizeWebsite = (rawUrl) => {
+              const parsed = new URL(rawUrl);
+              const host = parsed.hostname.replace(/^www\./i, '').toLowerCase();
+              const path = parsed.pathname.replace(/\/+$/, '');
+              const search = parsed.search || '';
+              const hash = parsed.hash || '';
+              return `${host}${path}${search}${hash}`.toLowerCase();
+            };
+
+            const isAbsoluteHttpUrl = (rawUrl) => {
+              try {
+                const parsed = new URL(rawUrl);
+                return parsed.protocol === 'http:' || parsed.protocol === 'https:';
+              } catch {
+                return false;
+              }
+            };
+
+            const submission = {
+              name: getField('Name'),
+              year: getField('Graduation Year'),
+              website: getField('Website'),
+              role: getField('Role (Optional)'),
+              instagram: getField('Instagram (Optional)'),
+              twitter: getField('Twitter/X (Optional)'),
+              linkedin: getField('LinkedIn (Optional)'),
+              github: getField('GitHub (Optional)')
+            };
+
+            const errors = [];
+            if (!submission.name) errors.push('`name` is required.');
+
+            const parsedYear = Number.parseInt(submission.year, 10);
+            if (!Number.isInteger(parsedYear)) {
+              errors.push('`year` must be an integer.');
+            } else if (parsedYear < 2000 || parsedYear > 2100) {
+              errors.push('`year` must be between 2000 and 2100.');
+            }
+
+            if (!submission.website) {
+              errors.push('`website` is required.');
+            } else if (!isAbsoluteHttpUrl(submission.website)) {
+              errors.push('`website` must be an absolute URL starting with `http://` or `https://`.');
+            }
+
+            const optionalLinks = ['instagram', 'twitter', 'linkedin', 'github'];
+            for (const field of optionalLinks) {
+              if (submission[field] && !isAbsoluteHttpUrl(submission[field])) {
+                errors.push(`\`${field}\` must be an absolute URL when provided.`);
+              }
+            }
+
+            let normalizedSubmissionWebsite = '';
+            if (!errors.length) {
+              normalizedSubmissionWebsite = normalizeWebsite(submission.website);
+
+              const membersPath = 'data/members.json';
+              const membersText = fs.readFileSync(membersPath, 'utf8');
+              let members;
+              try {
+                members = JSON.parse(membersText);
+              } catch (error) {
+                errors.push('`data/members.json` is invalid JSON and could not be parsed.');
+              }
+
+              if (members && Array.isArray(members.sites)) {
+                const duplicate = members.sites.some((site) => {
+                  if (!site?.website || typeof site.website !== 'string') return false;
+                  try {
+                    return normalizeWebsite(site.website) === normalizedSubmissionWebsite;
+                  } catch {
+                    return false;
+                  }
+                });
+
+                if (duplicate) {
+                  errors.push('A member with this `website` already exists in `data/members.json`.');
+                }
+              }
+            }
+
+            const entry = {
+              name: submission.name,
+              year: Number.isInteger(parsedYear) ? parsedYear : submission.year,
+              website: submission.website,
+              links: {
+                instagram: submission.instagram || '',
+                twitter: submission.twitter || '',
+                linkedin: submission.linkedin || '',
+                github: submission.github || ''
+              }
+            };
+
+            if (submission.role) {
+              entry.role = submission.role;
+            }
+
+            core.setOutput('valid', errors.length === 0 ? 'true' : 'false');
+            core.setOutput('errors', errors.join('\n'));
+            core.setOutput('entry', JSON.stringify(entry));
+
+      - name: Mark issue invalid
+        if: steps.parse.outputs.valid != 'true'
+        uses: actions/github-script@v7
+        env:
+          ERRORS: ${{ steps.parse.outputs.errors }}
+        with:
+          script: |
+            const errors = process.env.ERRORS || 'Submission validation failed.';
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: [
+                'Submission could not be processed:',
+                '',
+                errors.split('\n').map((line) => `- ${line}`).join('\n'),
+                '',
+                'Please edit this issue and fix the fields. The automation will re-run on edit.'
+              ].join('\n')
+            });
+
+            try {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                labels: ['submission-invalid']
+              });
+            } catch (error) {
+              core.warning(`Could not add label: ${error.message}`);
+            }
+
+      - name: Prepare branch and append member
+        if: steps.parse.outputs.valid == 'true'
+        id: commit
+        env:
+          ENTRY_JSON: ${{ steps.parse.outputs.entry }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          BRANCH_NAME: auto/member-submission-${{ github.event.issue.number }}
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          set -euo pipefail
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git fetch origin "${DEFAULT_BRANCH}"
+          git checkout -B "${BRANCH_NAME}" "origin/${DEFAULT_BRANCH}"
+
+          node - <<'NODE'
+          const fs = require('fs');
+
+          const entry = JSON.parse(process.env.ENTRY_JSON);
+          const membersPath = 'data/members.json';
+
+          const raw = fs.readFileSync(membersPath, 'utf8');
+          const parsed = JSON.parse(raw);
+
+          if (!parsed || !Array.isArray(parsed.sites)) {
+            throw new Error('members.json does not contain a `sites` array.');
+          }
+
+          parsed.sites.push(entry);
+          fs.writeFileSync(membersPath, `${JSON.stringify(parsed, null, 2)}\n`, 'utf8');
+          NODE
+
+          if git diff --quiet -- data/members.json; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          git add data/members.json
+          git commit -m "chore: add member submission from issue #${ISSUE_NUMBER}"
+          git push --force --set-upstream origin "${BRANCH_NAME}"
+
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+          echo "branch_name=${BRANCH_NAME}" >> "$GITHUB_OUTPUT"
+
+      - name: Create or update PR
+        if: steps.parse.outputs.valid == 'true' && steps.commit.outputs.changed == 'true'
+        id: pr
+        uses: actions/github-script@v7
+        env:
+          BRANCH_NAME: ${{ steps.commit.outputs.branch_name }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_URL: ${{ github.event.issue.html_url }}
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        with:
+          script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const branch = process.env.BRANCH_NAME;
+            const issueNumber = Number(process.env.ISSUE_NUMBER);
+            const issueUrl = process.env.ISSUE_URL;
+            const base = process.env.DEFAULT_BRANCH;
+
+            const existing = await github.rest.pulls.list({
+              owner,
+              repo,
+              state: 'open',
+              head: `${owner}:${branch}`
+            });
+
+            let pr;
+            if (existing.data.length > 0) {
+              pr = existing.data[0];
+            } else {
+              const created = await github.rest.pulls.create({
+                owner,
+                repo,
+                title: `Add member from issue #${issueNumber}`,
+                head: branch,
+                base,
+                body: [
+                  `Automated member submission from issue #${issueNumber}.`,
+                  '',
+                  `Source issue: ${issueUrl}`
+                ].join('\n')
+              });
+              pr = created.data;
+            }
+
+            core.setOutput('url', pr.html_url);
+            core.setOutput('number', String(pr.number));
+
+      - name: Comment success on issue
+        if: steps.parse.outputs.valid == 'true' && steps.commit.outputs.changed == 'true'
+        uses: actions/github-script@v7
+        env:
+          PR_URL: ${{ steps.pr.outputs.url }}
+          PR_NUMBER: ${{ steps.pr.outputs.number }}
+        with:
+          script: |
+            const prUrl = process.env.PR_URL;
+            const prNumber = process.env.PR_NUMBER;
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: `Thanks for the submission. I opened/updated PR #${prNumber}: ${prUrl}`
+            });
+
+            try {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                labels: ['auto-pr-created']
+              });
+            } catch (error) {
+              core.warning(`Could not add label: ${error.message}`);
+            }

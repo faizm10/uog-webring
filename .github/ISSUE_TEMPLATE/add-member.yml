@@ -1,0 +1,80 @@
+name: Add member profile
+about: Submit your profile for automated PR creation
+title: "[Add Member]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Submit your profile details below. Required fields are **name**, **graduation year**, and **website**.
+        Use absolute URLs (`https://...`) for website and social links.
+
+  - type: input
+    id: name
+    attributes:
+      label: Name
+      placeholder: Jane Doe
+    validations:
+      required: true
+
+  - type: input
+    id: year
+    attributes:
+      label: Graduation Year
+      placeholder: "2027"
+      description: Enter a 4-digit year between 2000 and 2100.
+    validations:
+      required: true
+
+  - type: input
+    id: website
+    attributes:
+      label: Website
+      placeholder: https://janedoe.com
+      value: https://
+      description: Must be an absolute URL starting with http:// or https://.
+    validations:
+      required: true
+
+  - type: input
+    id: role
+    attributes:
+      label: Role (Optional)
+      placeholder: SWE Intern @ Company
+    validations:
+      required: false
+
+  - type: input
+    id: instagram
+    attributes:
+      label: Instagram (Optional)
+      placeholder: https://instagram.com/your-handle
+      value: https://
+    validations:
+      required: false
+
+  - type: input
+    id: twitter
+    attributes:
+      label: Twitter/X (Optional)
+      placeholder: https://x.com/your-handle
+      value: https://
+    validations:
+      required: false
+
+  - type: input
+    id: linkedin
+    attributes:
+      label: LinkedIn (Optional)
+      placeholder: https://linkedin.com/in/your-handle
+      value: https://
+    validations:
+      required: false
+
+  - type: input
+    id: github
+    attributes:
+      label: GitHub (Optional)
+      placeholder: https://github.com/your-handle
+      value: https://
+    validations:
+      required: false

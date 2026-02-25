@@ -13,6 +13,22 @@ let logConsoleMessage = () => {
 
 const getSites = () => (window.webringData?.sites ?? []);
 
+const isAbsoluteHttpUrl = (value) => {
+  try {
+    const parsed = new URL(value);
+    return parsed.protocol === "http:" || parsed.protocol === "https:";
+  } catch {
+    return false;
+  }
+};
+
+const normalizeUrlInput = (value) => {
+  const trimmed = (value || "").trim();
+  if (!trimmed) return "";
+  if (/^[a-zA-Z][a-zA-Z\d+\-.]*:\/\//.test(trimmed)) return trimmed;
+  return `https://${trimmed.replace(/^\/+/, "")}`;
+};
+
 const socialIconSvg = (type) => {
   if (type === "instagram") {
     return `<svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5Zm8.9 1.15a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z"/></svg>`;
@@ -205,6 +221,13 @@ document.addEventListener("DOMContentLoaded", async () => {
   const desktopInput = document.getElementById("search");
   const mobileInput = document.getElementById("search-mobile");
   const searchMemberCount = document.getElementById("search-member-count");
+  const formModal = document.getElementById("form-modal");
+  const openFormModal = document.getElementById("open-form-modal");
+  const closeFormModal = document.getElementById("close-form-modal");
+  const formModalBackdrop = document.getElementById("form-modal-backdrop");
+  const submitForm = document.getElementById("member-submit-form");
+  const submitButton = document.getElementById("submit-member-button");
+  const submitStatus = document.getElementById("member-submit-status");
 
   logConsoleMessage();
   createWebringList(getSites().map((_, index) => index));
@@ -227,4 +250,111 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (mobileInput) handleUrlFragment(mobileInput);
   });
   window.addEventListener("hashchange", navigateWebring);
+
+  const closeModal = () => {
+    if (!formModal) return;
+    formModal.classList.add("hidden");
+    document.body.style.overflow = "";
+  };
+
+  if (openFormModal && formModal) {
+    openFormModal.addEventListener("click", () => {
+      formModal.classList.remove("hidden");
+      document.body.style.overflow = "hidden";
+    });
+  }
+  if (closeFormModal) closeFormModal.addEventListener("click", closeModal);
+  if (formModalBackdrop) formModalBackdrop.addEventListener("click", closeModal);
+  window.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeModal();
+  });
+
+  if (submitForm && submitButton && submitStatus) {
+    submitForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const formData = new FormData(submitForm);
+      const payload = {
+        name: (formData.get("name") || "").toString().trim(),
+        year: Number.parseInt((formData.get("year") || "").toString(), 10),
+        website: normalizeUrlInput((formData.get("website") || "").toString()),
+        role: (formData.get("role") || "").toString().trim(),
+        links: {
+          instagram: normalizeUrlInput((formData.get("instagram") || "").toString()),
+          twitter: normalizeUrlInput((formData.get("twitter") || "").toString()),
+          linkedin: normalizeUrlInput((formData.get("linkedin") || "").toString()),
+          github: normalizeUrlInput((formData.get("github") || "").toString()),
+        },
+      };
+
+      const errors = [];
+      if (!payload.name) errors.push("Name is required.");
+      if (!Number.isInteger(payload.year) || payload.year < 2000 || payload.year > 2100) {
+        errors.push("Year must be between 2000 and 2100.");
+      }
+      if (!payload.website || !isAbsoluteHttpUrl(payload.website)) {
+        errors.push("Website URL is invalid.");
+      }
+      ["instagram", "twitter", "linkedin", "github"].forEach((field) => {
+        const value = payload.links[field];
+        if (value && !isAbsoluteHttpUrl(value)) {
+          errors.push(`${field} URL is invalid.`);
+        }
+      });
+
+      if (errors.length) {
+        submitStatus.textContent = errors.join(" ");
+        submitStatus.className = "text-xs font-latinMonoRegular text-site-accent";
+        return;
+      }
+
+      submitButton.disabled = true;
+      submitButton.textContent = "Submitting...";
+      submitStatus.textContent = "Creating your PR...";
+      submitStatus.className = "text-xs font-latinMonoRegular text-site-muted";
+
+      try {
+        const response = await fetch("/api/submit-member", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+        const rawResponse = await response.text();
+        let data = {};
+        if (rawResponse) {
+          try {
+            data = JSON.parse(rawResponse);
+          } catch (parseError) {
+            data = { message: rawResponse };
+          }
+        }
+
+        if (!response.ok) {
+          if (response.status === 404) {
+            throw new Error("Submission endpoint is not available on this deployment.");
+          }
+          const detailText = [data?.message, data?.details].filter(Boolean).join(" ");
+          if (detailText) {
+            throw new Error(detailText);
+          }
+          throw new Error(`Could not submit form (HTTP ${response.status}).`);
+        }
+
+        if (!data?.prUrl || !data?.prNumber) {
+          throw new Error("Submission succeeded but PR details were not returned.");
+        }
+
+        submitStatus.innerHTML = `Done. Your PR is ready: <a href="${data.prUrl}" class="underline" target="_blank" rel="noopener noreferrer">#${data.prNumber}</a>`;
+        submitStatus.className = "text-xs font-latinMonoRegular text-site-paper";
+        submitForm.reset();
+        closeModal();
+      } catch (error) {
+        submitStatus.textContent = error.message || "Could not submit form. Please try again.";
+        submitStatus.className = "text-xs font-latinMonoRegular text-site-accent";
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = "Submit and create PR";
+      }
+    });
+  }
 });
