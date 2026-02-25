@@ -1,398 +1,410 @@
 {
-    "sites": [
-        {
-            "name": "Faiz Mustansar",
-            "year": 2026,
-            "website": "https://faizm.me",
-            "role": "SWE intern @ TD Bank",
-            "links": {
-                "instagram": "https://www.instagram.com/faizm.30/",
-                "twitter": "https://x.com/_faizm",
-                "linkedin": "https://www.linkedin.com/in/faizmustansar"
-            }
-        },
-        {
-            "name": "Pradhapan Rajendran",
-            "year": 2024,
-            "website": "https://www.pradr.com/",
-            "role": "SWE @ Meta",
-            "links": {
-                "instagram": "",
-                "twitter": "",
-                "linkedin": "https://www.linkedin.com/in/pradhapanr/",
-                "github": ""
-            }
-        },
-        {
-            "name": "Vince Moschella",
-            "year": 2026,
-            "website": "https://www.vincemoschella.com/",
-            "role": "SDE intern @ Amazon",
-            "links": {
-                "instagram": "",
-                "twitter": "",
-                "linkedin": "https://www.linkedin.com/in/moschellav/",
-                "github": ""
-            }
-        },
-        {
-            "name": "Basil Yusuf",
-            "year": 2024,
-            "website": "https://www.basilyusuf.com/",
-            "role": "SWE @ Google",
-            "links": {
-                "instagram": "",
-                "twitter": "https://x.com/basilyusuf1709",
-                "linkedin": "https://www.linkedin.com/in/basilyusuf1709/",
-                "github": "https://github.com/basilysf1709"
-            }
-        },
-        {
-            "name": "Boris Skurikhin",
-            "year": 2022,
-            "website": "https://skurikh.in",
-            "role": "Founder, CTO @ Docket (YC X25)",
-            "links": {
-                "instagram": "",
-                "twitter": "https://x.com/boriskurikhin",
-                "linkedin": "https://www.linkedin.com/in/boris-skurikhin/"
-            }
-        },
-        {
-            "name": "Will Pringle",
-            "year": 2023,
-            "website": "https://willpringle.ca/",
-            "role": "SWE @ Amazon",
-            "links": {
-                "instagram": "",
-                "twitter": "",
-                "linkedin": "https://www.linkedin.com/in/will-pringle/",
-                "github": "https://github.com/wiwichips"
-            }
-        },
-        {
-            "name": "Usman Zaheer",
-            "year": 2024,
-            "role": "SWE @ Palantir",
-            "website": "https://usmanzaheer.netlify.app/",
-            "links": {
-                "instagram": "",
-                "twitter": "",
-                "linkedin": "https://www.linkedin.com/in/usman-zaheer-pk/",
-                "github": ""
-            }
-        },
-        {
-            "name": "Liang Wang",
-            "year": 2025,
-            "website": "https://liangw.com/",
-            "links": {
-                "instagram": "",
-                "twitter": "https://x.com/IntrnlCmplrErr",
-                "linkedin": "https://www.linkedin.com/in/liang-wang-225607174/",
-                "github": "https://github.com/Internal-Compiler-Error"
-            }
-        },
-        {
-            "name": "Sean Chow",
-            "year": 2020,
-            "website": "https://seanchow.com",
-            "role": "Senior PM @ CoreWeave",
-            "links": {
-                "instagram": "",
-                "twitter": "",
-                "linkedin": "https://www.linkedin.com/in/sean-chow/",
-                "github": ""
-            }
-        },
-        {
-            "name": "Vedant Vyas",
-            "year": 2027,
-            "website": "https://www.linkedin.com/in/vedant-vyas5/",
-            "role": "Co-Founder @ Opennote (YC S25)",
-            "links": {
-                "instagram": "",
-                "twitter": "https://x.com/vedantvyas",
-                "linkedin": "https://www.linkedin.com/in/vedant-vyas5/",
-                "github": ""
-            }
-        },
-        {
-            "name": "Jason Nguyen",
-            "year": 2022,
-            "website": "https://gist.github.com/jnguyen1098?direction=desc&sort=updated",
-            "role": "SWE @ DoorDash",
-            "links": {
-                "instagram": "https://www.instagram.com/thejson27/",
-                "twitter": "",
-                "linkedin": "https://www.linkedin.com/in/jason-nguyen-cs",
-                "github": "https://github.com/jnguyen1098"
-            }
-        },
-        {
-            "name": "Matthew Ng",
-            "year": 2024,
-            "website": "https://github.com/Matt-Ng",
-            "role": "SWE @ Google",
-            "links": {
-                "instagram": "",
-                "twitter": "",
-                "linkedin": "https://www.linkedin.com/in/matt-ng/",
-                "github": "https://github.com/Matt-Ng"
-            }
-        },
-        {
-            "name": "Shawn Kaplan",
-            "year": 2021,
-            "website": "https://github.com/xWink",
-            "role": "SDE II @ Amazon",
-            "links": {
-                "instagram": "https://www.instagram.com/shawn.kap/",
-                "twitter": "",
-                "linkedin": "https://www.linkedin.com/in/shawn-kaplan-899724136/",
-                "github": "https://github.com/xWink"
-            }
-        },
-        {
-            "name": "Harsh Topiwala",
-            "year": 2024,
-            "website": "https://github.com/Harsh-Topi",
-            "links": {
-                "instagram": "",
-                "twitter": "",
-                "linkedin": "https://www.linkedin.com/in/htopiwala",
-                "github": "https://github.com/Harsh-Topi"
-            }
-        },
-        {
-            "name": "Michelle Berry",
-            "year": 2024,
-            "website": "http://www.michelleberry.ca/",
-            "role": "SWE @ Splunk",
-            "links": {
-                "instagram": "",
-                "twitter": "",
-                "linkedin": "https://www.linkedin.com/in/michelle-berry-b43b47201/",
-                "github": "https://github.com/michelleberry"
-            }
-        },
-        {
-            "name": "Anthony Vidovic",
-            "year": 2024,
-            "website": "https://www.anthonyvidovic.com/",
-            "links": {
-                "instagram": "",
-                "twitter": "",
-                "linkedin": "https://www.linkedin.com/in/anthonyvidovic/",
-                "github": "https://github.com/anthonyvid"
-            }
-        },
-        {
-            "name": "Malcolm Wright",
-            "year": 2024,
-            "website": "http://mbw101.github.io/",
-            "role": "SWE @ Microsoft",
-            "links": {
-                "instagram": "",
-                "twitter": "",
-                "linkedin": "https://www.linkedin.com/in/malcolmbwright",
-                "github": "https://github.com/mbw101"
-            }
-        },
-        {
-            "name": "Keefer Rourke",
-            "year": 2021,
-            "website": "https://krourke.org/",
-            "links": {
-                "instagram": "",
-                "twitter": "https://bsky.app/profile/keefer.is",
-                "linkedin": "https://linkedin.com/in/keeferrourke",
-                "github": "https://github.com/keeferrourke"
-            }
-        },
-        {
-            "name": "Tony Hoan Trinh",
-            "year": 2023,
-            "website": "https://github.com/TonyHoanTrinh",
-            "role": "SWE @ Amazon",
-            "links": {
-                "instagram": "",
-                "twitter": "",
-                "linkedin": "https://www.linkedin.com/in/tony-hoan-trinh-965408168/",
-                "github": "https://github.com/TonyHoanTrinh"
-            }
-        },
-        {
-            "name": "Farhad Karimi",
-            "year": 2021,
-            "website": "https://farhadkarimi.com/",
-            "links": {
-                "instagram": "",
-                "twitter": "",
-                "linkedin": "https://www.linkedin.com/in/fradmon/",
-                "github": "https://github.com/fradmon"
-            }
-        },
-        {
-            "name": "Baraa Al-Rashedi",
-            "year": 2026,
-            "website": "https://athenaguard.ca/",
-            "role": "Founder & CEO @ AthenaGuard",
-            "links": {
-                "instagram": "https://www.instagram.com/baroobi.inc/",
-                "twitter": "",
-                "linkedin": "https://www.linkedin.com/in/baraa-al/",
-                "github": ""
-            }
-        },
-        {
-            "name": "Faisal Fawad",
-            "year": 2027,
-            "website": "https://www.linkedin.com/in/faisal-fawad/",
-            "role": "SWE intern @ Tesla",
-            "links": {
-                "instagram": "",
-                "twitter": "",
-                "linkedin": "https://www.linkedin.com/in/faisal-fawad/",
-                "github": ""
-            }
-        },
-        {
-            "name": "Michael Czomko",
-            "year": 2027,
-            "website": "https://github.com/AlphaCloudX",
-            "links": {
-                "instagram": "",
-                "twitter": "",
-                "linkedin": "https://www.linkedin.com/in/michael-czomko/",
-                "github": "https://github.com/AlphaCloudX"
-            }
-        },
-        {
-            "name": "Zach Legesse",
-            "year": 2027,
-            "website": "https://zachlegesse.ca",
-            "role": "GenAI intern @ RBC",
-            "links": {
-                "instagram": "",
-                "twitter": "",
-                "linkedin": "https://linkedin.com/in/zach-legesse",
-                "github": ""
-            }
-        },
-        {
-            "name": "Yousuf Ahmed Khan",
-            "year": 2027,
-            "website": "https://www.yousufahmedkhan.com/",
-            "role": "SWE intern @ Defense",
-            "links": {
-                "instagram": "",
-                "twitter": "https://x.com/yousufakhan95",
-                "linkedin": "https://www.linkedin.com/in/yousuf-ahmed-khan/"
-            }
-        },
-        {
-            "name": "Youseph Elkhouly",
-            "year": 2027,
-            "website": "https://youseph.ca/",
-            "links": {
-                "instagram": "",
-                "twitter": "",
-                "linkedin": "https://www.linkedin.com/in/yousephe"
-            }
-        },
-        {
-            "name": "Pasan Undugodage",
-            "year": 2023,
-            "website": "https://pasanishere.github.io/",
-            "links": {
-                "instagram": "https://www.instagram.com/pasanundugodage/",
-                "twitter": "https://x.com/PasanIsHere",
-                "linkedin": "https://www.linkedin.com/in/pasanu",
-                "github": "https://github.com/pasanishere"
-            }
-        },
-        {
-            "name": "Ethan Huber",
-            "year": 2029,
-            "website": "https://ethanhuber.ca/",
-            "role": "Incoming @ Toyota",
-            "links": {
-                "instagram": "",
-                "twitter": "",
-                "linkedin": "https://www.linkedin.com/in/ethan-huber/",
-                "github": "https://github.com/zushiEdu"
-            }
-        },
-        {
-            "name": "Connor Morgan",
-            "year": 2026,
-            "website": "https://connormorgan.ca",
-            "role": "SWE @ Value Connect",
-            "links": {
-                "instagram": "",
-                "twitter": "",
-                "linkedin": "https://linkedin.com/in/connor-morgan-custom",
-                "github": "https://github.com/connor1219"
-            }
-        },
-        {
-            "name": "Gevin Madharha",
-            "year": 2022,
-            "website": "https://gevin.ca",
-            "role": "SWE II @ Warner Bros. Discovery",
-            "links": {
-                "instagram": "https://www.instagram.com/gevinthegreat",
-                "twitter": "",
-                "linkedin": "https://www.linkedin.com/in/gevinm/",
-                "github": ""
-            }
-        },
-        {
-            "name": "Justin Leski",
-            "year": 2027,
-            "website": "https://www.justinleski.com/",
-            "role": "Incoming @ RBC Amplify",
-            "links": {
-                "instagram": "",
-                "twitter": "",
-                "linkedin": "https://www.linkedin.com/in/justinleski/",
-                "github": "https://github.com/justinleski"
-            }
-        },
-        {
-            "name": "Jas Sri",
-            "website": "https://jassri.online",
-            "year": 2029,
-            "role": "Incoming @ Scotiabank Data Intern",
-            "links": {
-                "instagram": "https://instagram.com/jassri11",
-                "twitter": "",
-                "linkedin": "https://www.linkedin.com/in/jas-sri-69495b22b/",
-                "github": "https://github.com/jsrii"
-            }
-        },
-        {
-            "name": "Julien Serbanescu",
-            "website": "https://julien-ser.github.io/JulienSerbanescu/",
-            "year": 2028,
-            "role": "Cloud Engineer @ Co-operators & AI Researcher",
-            "links": {
-                "twitter": "https://x.com/Da_Julster",
-                "linkedin": "https://www.linkedin.com/in/julien-serbanescu-6ba52a241/",
-                "github": "https://github.com/Julien-ser"
-            }
-        },
-        {
-            "name": "Naol Denko",
-            "website": "https://naoldenko.com",
-            "year": 2025,
-            "role": "Founder & CEO @ CriticAI",
-            "links": {
-              "instagram": "https://instagram.com/naolmdenko",
-              "twitter": "https://x.com/naoldenko",
-              "linkedin": "https://linkedin.com/in/naol"
-            }
-          }
-    ]
+  "sites": [
+    {
+      "name": "Faiz Mustansar",
+      "year": 2026,
+      "website": "https://faizm.me",
+      "role": "SWE intern @ TD Bank",
+      "links": {
+        "instagram": "https://www.instagram.com/faizm.30/",
+        "twitter": "https://x.com/_faizm",
+        "linkedin": "https://www.linkedin.com/in/faizmustansar"
+      }
+    },
+    {
+      "name": "Pradhapan Rajendran",
+      "year": 2024,
+      "website": "https://www.pradr.com/",
+      "role": "SWE @ Meta",
+      "links": {
+        "instagram": "",
+        "twitter": "",
+        "linkedin": "https://www.linkedin.com/in/pradhapanr/",
+        "github": ""
+      }
+    },
+    {
+      "name": "Vince Moschella",
+      "year": 2026,
+      "website": "https://www.vincemoschella.com/",
+      "role": "SDE intern @ Amazon",
+      "links": {
+        "instagram": "",
+        "twitter": "",
+        "linkedin": "https://www.linkedin.com/in/moschellav/",
+        "github": ""
+      }
+    },
+    {
+      "name": "Basil Yusuf",
+      "year": 2024,
+      "website": "https://www.basilyusuf.com/",
+      "role": "SWE @ Google",
+      "links": {
+        "instagram": "",
+        "twitter": "https://x.com/basilyusuf1709",
+        "linkedin": "https://www.linkedin.com/in/basilyusuf1709/",
+        "github": "https://github.com/basilysf1709"
+      }
+    },
+    {
+      "name": "Boris Skurikhin",
+      "year": 2022,
+      "website": "https://skurikh.in",
+      "role": "Founder, CTO @ Docket (YC X25)",
+      "links": {
+        "instagram": "",
+        "twitter": "https://x.com/boriskurikhin",
+        "linkedin": "https://www.linkedin.com/in/boris-skurikhin/"
+      }
+    },
+    {
+      "name": "Will Pringle",
+      "year": 2023,
+      "website": "https://willpringle.ca/",
+      "role": "SWE @ Amazon",
+      "links": {
+        "instagram": "",
+        "twitter": "",
+        "linkedin": "https://www.linkedin.com/in/will-pringle/",
+        "github": "https://github.com/wiwichips"
+      }
+    },
+    {
+      "name": "Usman Zaheer",
+      "year": 2024,
+      "role": "SWE @ Palantir",
+      "website": "https://usmanzaheer.netlify.app/",
+      "links": {
+        "instagram": "",
+        "twitter": "",
+        "linkedin": "https://www.linkedin.com/in/usman-zaheer-pk/",
+        "github": ""
+      }
+    },
+    {
+      "name": "Liang Wang",
+      "year": 2025,
+      "website": "https://liangw.com/",
+      "links": {
+        "instagram": "",
+        "twitter": "https://x.com/IntrnlCmplrErr",
+        "linkedin": "https://www.linkedin.com/in/liang-wang-225607174/",
+        "github": "https://github.com/Internal-Compiler-Error"
+      }
+    },
+    {
+      "name": "Sean Chow",
+      "year": 2020,
+      "website": "https://seanchow.com",
+      "role": "Senior PM @ CoreWeave",
+      "links": {
+        "instagram": "",
+        "twitter": "",
+        "linkedin": "https://www.linkedin.com/in/sean-chow/",
+        "github": ""
+      }
+    },
+    {
+      "name": "Vedant Vyas",
+      "year": 2027,
+      "website": "https://www.linkedin.com/in/vedant-vyas5/",
+      "role": "Co-Founder @ Opennote (YC S25)",
+      "links": {
+        "instagram": "",
+        "twitter": "https://x.com/vedantvyas",
+        "linkedin": "https://www.linkedin.com/in/vedant-vyas5/",
+        "github": ""
+      }
+    },
+    {
+      "name": "Jason Nguyen",
+      "year": 2022,
+      "website": "https://gist.github.com/jnguyen1098?direction=desc&sort=updated",
+      "role": "SWE @ DoorDash",
+      "links": {
+        "instagram": "https://www.instagram.com/thejson27/",
+        "twitter": "",
+        "linkedin": "https://www.linkedin.com/in/jason-nguyen-cs",
+        "github": "https://github.com/jnguyen1098"
+      }
+    },
+    {
+      "name": "Matthew Ng",
+      "year": 2024,
+      "website": "https://github.com/Matt-Ng",
+      "role": "SWE @ Google",
+      "links": {
+        "instagram": "",
+        "twitter": "",
+        "linkedin": "https://www.linkedin.com/in/matt-ng/",
+        "github": "https://github.com/Matt-Ng"
+      }
+    },
+    {
+      "name": "Shawn Kaplan",
+      "year": 2021,
+      "website": "https://github.com/xWink",
+      "role": "SDE II @ Amazon",
+      "links": {
+        "instagram": "https://www.instagram.com/shawn.kap/",
+        "twitter": "",
+        "linkedin": "https://www.linkedin.com/in/shawn-kaplan-899724136/",
+        "github": "https://github.com/xWink"
+      }
+    },
+    {
+      "name": "Harsh Topiwala",
+      "year": 2024,
+      "website": "https://github.com/Harsh-Topi",
+      "links": {
+        "instagram": "",
+        "twitter": "",
+        "linkedin": "https://www.linkedin.com/in/htopiwala",
+        "github": "https://github.com/Harsh-Topi"
+      }
+    },
+    {
+      "name": "Michelle Berry",
+      "year": 2024,
+      "website": "http://www.michelleberry.ca/",
+      "role": "SWE @ Splunk",
+      "links": {
+        "instagram": "",
+        "twitter": "",
+        "linkedin": "https://www.linkedin.com/in/michelle-berry-b43b47201/",
+        "github": "https://github.com/michelleberry"
+      }
+    },
+    {
+      "name": "Anthony Vidovic",
+      "year": 2024,
+      "website": "https://www.anthonyvidovic.com/",
+      "links": {
+        "instagram": "",
+        "twitter": "",
+        "linkedin": "https://www.linkedin.com/in/anthonyvidovic/",
+        "github": "https://github.com/anthonyvid"
+      }
+    },
+    {
+      "name": "Malcolm Wright",
+      "year": 2024,
+      "website": "http://mbw101.github.io/",
+      "role": "SWE @ Microsoft",
+      "links": {
+        "instagram": "",
+        "twitter": "",
+        "linkedin": "https://www.linkedin.com/in/malcolmbwright",
+        "github": "https://github.com/mbw101"
+      }
+    },
+    {
+      "name": "Keefer Rourke",
+      "year": 2021,
+      "website": "https://krourke.org/",
+      "links": {
+        "instagram": "",
+        "twitter": "https://bsky.app/profile/keefer.is",
+        "linkedin": "https://linkedin.com/in/keeferrourke",
+        "github": "https://github.com/keeferrourke"
+      }
+    },
+    {
+      "name": "Tony Hoan Trinh",
+      "year": 2023,
+      "website": "https://github.com/TonyHoanTrinh",
+      "role": "SWE @ Amazon",
+      "links": {
+        "instagram": "",
+        "twitter": "",
+        "linkedin": "https://www.linkedin.com/in/tony-hoan-trinh-965408168/",
+        "github": "https://github.com/TonyHoanTrinh"
+      }
+    },
+    {
+      "name": "Farhad Karimi",
+      "year": 2021,
+      "website": "https://farhadkarimi.com/",
+      "links": {
+        "instagram": "",
+        "twitter": "",
+        "linkedin": "https://www.linkedin.com/in/fradmon/",
+        "github": "https://github.com/fradmon"
+      }
+    },
+    {
+      "name": "Baraa Al-Rashedi",
+      "year": 2026,
+      "website": "https://athenaguard.ca/",
+      "role": "Founder & CEO @ AthenaGuard",
+      "links": {
+        "instagram": "https://www.instagram.com/baroobi.inc/",
+        "twitter": "",
+        "linkedin": "https://www.linkedin.com/in/baraa-al/",
+        "github": ""
+      }
+    },
+    {
+      "name": "Faisal Fawad",
+      "year": 2027,
+      "website": "https://www.linkedin.com/in/faisal-fawad/",
+      "role": "SWE intern @ Tesla",
+      "links": {
+        "instagram": "",
+        "twitter": "",
+        "linkedin": "https://www.linkedin.com/in/faisal-fawad/",
+        "github": ""
+      }
+    },
+    {
+      "name": "Michael Czomko",
+      "year": 2027,
+      "website": "https://github.com/AlphaCloudX",
+      "links": {
+        "instagram": "",
+        "twitter": "",
+        "linkedin": "https://www.linkedin.com/in/michael-czomko/",
+        "github": "https://github.com/AlphaCloudX"
+      }
+    },
+    {
+      "name": "Zach Legesse",
+      "year": 2027,
+      "website": "https://zachlegesse.ca",
+      "role": "GenAI intern @ RBC",
+      "links": {
+        "instagram": "",
+        "twitter": "",
+        "linkedin": "https://linkedin.com/in/zach-legesse",
+        "github": ""
+      }
+    },
+    {
+      "name": "Yousuf Ahmed Khan",
+      "year": 2027,
+      "website": "https://www.yousufahmedkhan.com/",
+      "role": "SWE intern @ Defense",
+      "links": {
+        "instagram": "",
+        "twitter": "https://x.com/yousufakhan95",
+        "linkedin": "https://www.linkedin.com/in/yousuf-ahmed-khan/"
+      }
+    },
+    {
+      "name": "Youseph Elkhouly",
+      "year": 2027,
+      "website": "https://youseph.ca/",
+      "links": {
+        "instagram": "",
+        "twitter": "",
+        "linkedin": "https://www.linkedin.com/in/yousephe"
+      }
+    },
+    {
+      "name": "Pasan Undugodage",
+      "year": 2023,
+      "website": "https://pasanishere.github.io/",
+      "links": {
+        "instagram": "https://www.instagram.com/pasanundugodage/",
+        "twitter": "https://x.com/PasanIsHere",
+        "linkedin": "https://www.linkedin.com/in/pasanu",
+        "github": "https://github.com/pasanishere"
+      }
+    },
+    {
+      "name": "Ethan Huber",
+      "year": 2029,
+      "website": "https://ethanhuber.ca/",
+      "role": "Incoming @ Toyota",
+      "links": {
+        "instagram": "",
+        "twitter": "",
+        "linkedin": "https://www.linkedin.com/in/ethan-huber/",
+        "github": "https://github.com/zushiEdu"
+      }
+    },
+    {
+      "name": "Connor Morgan",
+      "year": 2026,
+      "website": "https://connormorgan.ca",
+      "role": "SWE @ Value Connect",
+      "links": {
+        "instagram": "",
+        "twitter": "",
+        "linkedin": "https://linkedin.com/in/connor-morgan-custom",
+        "github": "https://github.com/connor1219"
+      }
+    },
+    {
+      "name": "Gevin Madharha",
+      "year": 2022,
+      "website": "https://gevin.ca",
+      "role": "SWE II @ Warner Bros. Discovery",
+      "links": {
+        "instagram": "https://www.instagram.com/gevinthegreat",
+        "twitter": "",
+        "linkedin": "https://www.linkedin.com/in/gevinm/",
+        "github": ""
+      }
+    },
+    {
+      "name": "Justin Leski",
+      "year": 2027,
+      "website": "https://www.justinleski.com/",
+      "role": "Incoming @ RBC Amplify",
+      "links": {
+        "instagram": "",
+        "twitter": "",
+        "linkedin": "https://www.linkedin.com/in/justinleski/",
+        "github": "https://github.com/justinleski"
+      }
+    },
+    {
+      "name": "Jas Sri",
+      "website": "https://jassri.online",
+      "year": 2029,
+      "role": "Incoming @ Scotiabank Data Intern",
+      "links": {
+        "instagram": "https://instagram.com/jassri11",
+        "twitter": "",
+        "linkedin": "https://www.linkedin.com/in/jas-sri-69495b22b/",
+        "github": "https://github.com/jsrii"
+      }
+    },
+    {
+      "name": "Julien Serbanescu",
+      "website": "https://julien-ser.github.io/JulienSerbanescu/",
+      "year": 2028,
+      "role": "Cloud Engineer @ Co-operators & AI Researcher",
+      "links": {
+        "twitter": "https://x.com/Da_Julster",
+        "linkedin": "https://www.linkedin.com/in/julien-serbanescu-6ba52a241/",
+        "github": "https://github.com/Julien-ser"
+      }
+    },
+    {
+      "name": "Naol Denko",
+      "website": "https://naoldenko.com",
+      "year": 2025,
+      "role": "Founder & CEO @ CriticAI",
+      "links": {
+        "instagram": "https://instagram.com/naolmdenko",
+        "twitter": "https://x.com/naoldenko",
+        "linkedin": "https://linkedin.com/in/naol"
+      }
+    },
+    {
+      "name": "Faiz Mustansar",
+      "year": 2010,
+      "website": "https://testing.com",
+      "links": {
+        "instagram": "https://testing.com",
+        "twitter": "",
+        "linkedin": "",
+        "github": ""
+      },
+      "role": "meta"
+    }
+  ]
 }
