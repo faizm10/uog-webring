@@ -382,6 +382,15 @@
                 "linkedin": "https://www.linkedin.com/in/julien-serbanescu-6ba52a241/",
                 "github": "https://github.com/Julien-ser"
             }
+        },
+        {
+            "name": "Joseph Acernese",
+            "website": "https://josephacernese.github.io/",
+            "year": 2024,
+            "links": {
+                "github": "https://github.com/JosephAcernese",
+                "linkedin": "https://www.linkedin.com/in/joseph-acernese/"
+            }
         }
     ]
 }
