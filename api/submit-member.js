@@ -1,4 +1,6 @@
 const GITHUB_API = "https://api.github.com";
+const GITHUB_OWNER = "faizm10";
+const GITHUB_REPO = "uog-webring";
 
 function normalizeWebsite(rawUrl) {
   const parsed = new URL(rawUrl);
@@ -64,9 +66,7 @@ module.exports = async function handler(req, res) {
     return res.status(200).json({
       ok: true,
       message: "submit-member endpoint is reachable",
-      configured: Boolean(
-        process.env.GITHUB_TOKEN && process.env.GITHUB_OWNER && process.env.GITHUB_REPO
-      ),
+      configured: Boolean(process.env.GITHUB_TOKEN),
     });
   }
 
@@ -76,12 +76,12 @@ module.exports = async function handler(req, res) {
   }
 
   const token = process.env.GITHUB_TOKEN;
-  const owner = process.env.GITHUB_OWNER;
-  const repo = process.env.GITHUB_REPO;
+  const owner = GITHUB_OWNER;
+  const repo = GITHUB_REPO;
 
-  if (!token || !owner || !repo) {
+  if (!token) {
     return res.status(500).json({
-      message: "Server is missing GitHub configuration. Required env vars: GITHUB_TOKEN, GITHUB_OWNER, GITHUB_REPO.",
+      message: "Server is missing GitHub configuration. Required env var: GITHUB_TOKEN.",
     });
   }
 

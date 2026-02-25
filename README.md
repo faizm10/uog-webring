@@ -84,8 +84,6 @@ The badge uses the gryphon SVG (`gryphon.svg`).
 To enable automatic PR creation from the on-site form, set these environment variables in your deployment platform:
 
 - `GITHUB_TOKEN`: GitHub token with `contents:write` and `pull_requests:write` on this repo.
-- `GITHUB_OWNER`: repository owner (e.g. `faizm10`).
-- `GITHUB_REPO`: repository name (e.g. `uog-webring`).
 
 ## Attribution
 
