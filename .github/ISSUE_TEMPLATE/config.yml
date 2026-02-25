@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Add your profile (automated)
+    url: https://github.com/faizm10/uog-webring/issues/new?template=add-member.yml&title=%5BAdd+Member%5D%3A+
+    about: Use this form to auto-create a PR that adds your site.

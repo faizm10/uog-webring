@@ -86,9 +86,9 @@
             discover people one page at a time.
           </p>
           <p class="mt-6 text-sm sm:text-base font-latinMonoCaps text-site-paper">
-            Open a
-            <a href="https://github.com/faizm10/uog-webring" class="underline">PR</a>
-            to add your site.
+            <a href="https://github.com/faizm10/uog-webring" target="_blank" rel="noopener noreferrer" class="underline">Open a PR</a>
+            or
+            <button id="open-form-modal" type="button" class="underline">Form</button>
           </p>
         </div>
       </aside>
@@ -120,6 +120,53 @@
       </section>
     </div>
   </main>
+  <div id="form-modal" class="hidden fixed inset-0 z-50 p-4 sm:p-6 join-modal-overlay" role="dialog" aria-modal="true"
+    aria-labelledby="form-modal-title">
+    <div id="form-modal-backdrop" class="join-modal-backdrop absolute inset-0"></div>
+    <section class="relative z-10 mx-auto max-w-2xl panel p-4 sm:p-6 join-modal-card">
+      <div class="flex items-start justify-between gap-4">
+        <div>
+          <p class="eyebrow">FORM</p>
+          <h2 id="form-modal-title" class="mt-1 text-xl sm:text-2xl font-latinRomanDunhillOblique text-site-paper">
+            Add your site
+          </h2>
+        </div>
+        <button id="close-form-modal" type="button"
+          class="border border-site-line px-2 py-1 text-xs font-latinMonoCaps text-site-paper">Close</button>
+      </div>
+
+      <p class="mt-4 text-sm font-latinRoman text-site-muted leading-tight">
+        Fill this once and we will open the PR for you. Required: name, year, website.
+      </p>
+
+      <form id="member-submit-form" class="mt-4 grid grid-cols-1 gap-2.5">
+        <input id="submit-name" name="name" type="text" required placeholder="Name *"
+          class="search-input font-latinMonoRegular text-xs sm:text-sm" />
+        <input id="submit-year" name="year" type="number" required min="2000" max="2100" placeholder="Year * (e.g. 2028)"
+          class="search-input font-latinMonoRegular text-xs sm:text-sm" />
+        <input id="submit-website" name="website" type="text" required placeholder="Website * (e.g. yoursite.com)"
+          class="search-input font-latinMonoRegular text-xs sm:text-sm" />
+        <input id="submit-role" name="role" type="text" placeholder="Role (recommended)"
+          class="search-input font-latinMonoRegular text-xs sm:text-sm" />
+        <input id="submit-instagram" name="instagram" type="text" placeholder="Instagram (optional, instagram.com/...)"
+          class="search-input font-latinMonoRegular text-xs sm:text-sm" />
+        <input id="submit-twitter" name="twitter" type="text" placeholder="Twitter/X (optional, x.com/...)"
+          class="search-input font-latinMonoRegular text-xs sm:text-sm" />
+        <input id="submit-linkedin" name="linkedin" type="text" placeholder="LinkedIn (optional, linkedin.com/in/...)"
+          class="search-input font-latinMonoRegular text-xs sm:text-sm" />
+        <input id="submit-github" name="github" type="text" placeholder="GitHub (optional, github.com/...)"
+          class="search-input font-latinMonoRegular text-xs sm:text-sm" />
+        <button id="submit-member-button" type="submit"
+          class="member-submit-button font-latinMonoCaps text-xs sm:text-sm">
+          Submit and create PR
+        </button>
+        <p id="member-submit-status" class="text-xs font-latinMonoRegular text-site-muted">
+          Required fields: name, year, website.
+        </p>
+      </form>
+    </section>
+  </div>
+
 </body>
 
 </html>
