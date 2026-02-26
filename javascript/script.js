@@ -30,6 +30,9 @@ const normalizeUrlInput = (value) => {
 };
 
 const socialIconSvg = (type) => {
+  if (type === "website") {
+    return `<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.5 4 5.7 4 9s-1.5 6.5-4 9c-2.5-2.5-4-5.7-4-9s1.5-6.5 4-9Z"/></svg>`;
+  }
   if (type === "instagram") {
     return `<svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5Zm8.9 1.15a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z"/></svg>`;
   }
@@ -49,8 +52,14 @@ const createSocialLink = (type, url, isSearchItem) => {
   a.href = url;
   a.target = "_blank";
   a.rel = "noopener noreferrer";
-  a.title = type === "twitter" ? "Twitter/X" : type[0].toUpperCase() + type.slice(1);
-  a.className = "inline-flex items-center";
+  if (type === "twitter") {
+    a.title = "Twitter/X";
+  } else if (type === "website") {
+    a.title = "Website";
+  } else {
+    a.title = type[0].toUpperCase() + type.slice(1);
+  }
+  a.className = type === "website" ? "inline-flex items-center sm:hidden" : "inline-flex items-center";
   a.style.color = isSearchItem ? "#1a1308" : "#ffc429";
   a.innerHTML = socialIconSvg(type);
   return a;
@@ -100,7 +109,7 @@ let createWebringList = (matchedSiteIndices) => {
     }
 
     const urlCell = document.createElement("td");
-    urlCell.className = "pr-2 sm:pr-3 py-0 truncate";
+    urlCell.className = "hidden sm:table-cell pr-2 sm:pr-3 py-0 truncate";
 
     const link = document.createElement("a");
     link.href = site.website;
@@ -117,13 +126,15 @@ let createWebringList = (matchedSiteIndices) => {
     const links = document.createElement("div");
     links.className = "flex items-center gap-3";
 
+    const websiteLink = createSocialLink("website", site.website, isSearchItem);
     const instagramLink = createSocialLink("instagram", site?.links?.instagram, isSearchItem);
     const twitterLink = createSocialLink("twitter", site?.links?.twitter, isSearchItem);
     const linkedinLink = createSocialLink("linkedin", site?.links?.linkedin, isSearchItem);
+    if (websiteLink) links.appendChild(websiteLink);
     if (instagramLink) links.appendChild(instagramLink);
     if (twitterLink) links.appendChild(twitterLink);
     if (linkedinLink) links.appendChild(linkedinLink);
-    if (!instagramLink && !twitterLink && !linkedinLink) {
+    if (!websiteLink && !instagramLink && !twitterLink && !linkedinLink) {
       const empty = document.createElement("span");
       empty.textContent = "—";
       empty.className = "font-latinMonoRegular";
