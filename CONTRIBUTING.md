@@ -9,7 +9,11 @@ Thanks for contributing.
 1. Fill in the on-site submission form.
 2. Required fields: `name`, `year`, `website`. Optional links can be included.
 3. The backend validates your input and opens an automated PR.
-4. A maintainer reviews and merges.
+4. If the PR has no merge conflicts and the Vercel preview check (`Vercel`) succeeds, it is auto-merged.
+
+### Manual PR path behavior
+
+- Manual PRs are not auto-merged by this flow and remain maintainer-reviewed.
 
 ### Manual path
 

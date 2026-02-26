@@ -183,11 +183,12 @@ module.exports = async function handler(req, res) {
     });
 
     const pr = await githubRequest(`/repos/${owner}/${repo}/pulls`, token, "POST", {
-      title: `Add member: ${name}`,
+      title: `[form-submission] Add member: ${name}`,
       head: branch,
       base: defaultBranch,
       body: [
         `Automated submission from the uog-webring site form.`,
+        `Source: site-form`,
         "",
         `Submitted profile: ${website}`,
       ].join("\n"),
