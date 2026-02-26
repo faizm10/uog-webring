@@ -404,7 +404,18 @@
         "linkedin": "https://www.linkedin.com/in/MajdDayoub/",
         "github": "https://github.com/Majd-Dayoub"
       },
+      {
       "role": "Software Engineer"
+      "name": "Jibraan Kadri",
+      "year": 2025,
+      "website": "https://substack.com/@jibraan",
+      "links": {
+        "instagram": "",
+        "twitter": "https://x.com/KadriJibraan",
+        "linkedin": "https://www.linkedin.com/in/jibraan-kadri/",
+        "github": ""
+      },
+      "role": "Head of Biology"
     }
   ]
 }
