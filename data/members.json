@@ -405,6 +405,18 @@
         "github": ""
       },
       "role": "Head of Biology"
+    },
+    {
+      "name": "Majd Dayoub",
+      "year": 2027,
+      "website": "https://majd-dayoub.github.io/mdayoubPortfolio/",
+      "links": {
+        "instagram": "",
+        "twitter": "",
+        "linkedin": "https://www.linkedin.com/in/MajdDayoub/",
+        "github": "https://github.com/Majd-Dayoub"
+      },
+      "role": "Software Engineer"
     }
   ]
 }
