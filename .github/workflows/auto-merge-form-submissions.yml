@@ -1,0 +1,156 @@
+name: Auto Merge Form Submissions
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+  check_run:
+    types: [completed]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+  checks: read
+
+jobs:
+  auto-merge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Evaluate and auto-merge when eligible
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+
+            const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+            let prNumber;
+            if (context.eventName === 'pull_request') {
+              prNumber = context.payload.pull_request?.number;
+            } else if (context.eventName === 'check_run') {
+              const prs = context.payload.check_run?.pull_requests || [];
+              if (!prs.length) {
+                core.info('No PR associated with this check_run. Skipping.');
+                return;
+              }
+              prNumber = prs[0].number;
+            }
+
+            if (!prNumber) {
+              core.info('Could not resolve PR number. Skipping.');
+              return;
+            }
+
+            const isFormPr = (pr) => {
+              const title = pr.title || '';
+              const body = pr.body || '';
+              return title.startsWith('[form-submission]') || body.includes('Source: site-form');
+            };
+
+            const getPr = async () => {
+              const { data } = await github.rest.pulls.get({
+                owner,
+                repo,
+                pull_number: prNumber,
+              });
+              return data;
+            };
+
+            let pr = await getPr();
+
+            if (!isFormPr(pr)) {
+              core.info('PR is not marked as a form submission. Skipping auto-merge.');
+              return;
+            }
+
+            if (pr.state !== 'open') {
+              core.info(`PR #${prNumber} is not open (state=${pr.state}). Skipping.`);
+              return;
+            }
+
+            if (pr.draft) {
+              core.info(`PR #${prNumber} is draft. Skipping.`);
+              return;
+            }
+
+            // mergeable may be null briefly right after updates; retry a few times.
+            for (let i = 0; i < 6 && pr.mergeable === null; i += 1) {
+              core.info(`mergeable is null for PR #${prNumber}; retry ${i + 1}/6`);
+              await sleep(2000);
+              pr = await getPr();
+            }
+
+            if (pr.mergeable !== true) {
+              core.info(`PR #${prNumber} is not mergeable (mergeable=${pr.mergeable}). Skipping.`);
+              return;
+            }
+
+            const headSha = pr.head.sha;
+            const checks = await github.rest.checks.listForRef({
+              owner,
+              repo,
+              ref: headSha,
+              per_page: 100,
+            });
+
+            const vercelCheck = checks.data.check_runs.find((c) => c.name === 'Vercel');
+            if (!vercelCheck) {
+              core.info(`No check run named "Vercel" found for PR #${prNumber}. Skipping.`);
+              return;
+            }
+
+            core.info(`Vercel check status=${vercelCheck.status}, conclusion=${vercelCheck.conclusion}`);
+            if (vercelCheck.status !== 'completed' || vercelCheck.conclusion !== 'success') {
+              core.info('Vercel check is not successful yet. Skipping.');
+              return;
+            }
+
+            // Best effort labels for observability.
+            try {
+              await github.rest.issues.removeLabel({
+                owner,
+                repo,
+                issue_number: prNumber,
+                name: 'auto-merge-pending',
+              });
+            } catch (error) {
+              core.info('auto-merge-pending label not removed (may not exist).');
+            }
+
+            try {
+              const mergeResult = await github.rest.pulls.merge({
+                owner,
+                repo,
+                pull_number: prNumber,
+                merge_method: 'squash',
+              });
+
+              core.info(`Merged PR #${prNumber}. SHA: ${mergeResult.data.sha}`);
+
+              try {
+                await github.rest.issues.addLabels({
+                  owner,
+                  repo,
+                  issue_number: prNumber,
+                  labels: ['auto-merged'],
+                });
+              } catch (error) {
+                core.info('Could not add auto-merged label.');
+              }
+
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number: prNumber,
+                body: 'Auto-merged after Vercel success and conflict check.',
+              });
+            } catch (error) {
+              const message = String(error?.message || error);
+              core.warning(`Merge attempt failed: ${message}`);
+              if (message.includes('is not mergeable') || message.includes('Merge conflict')) {
+                core.info('PR is not mergeable at merge time. Exiting gracefully.');
+                return;
+              }
+              throw error;
+            }

@@ -13,7 +13,7 @@ Live site: [www.uguelph.network](https://www.uguelph.network)
 1. Fill in the **Add your site** form on the homepage.
 2. Submit once.
 3. The server automatically creates a PR that appends your entry to `data/members.json`.
-4. A maintainer reviews and merges.
+4. If there are no merge conflicts and the Vercel preview check (`Vercel`) succeeds, it auto-merges to the default branch.
 
 ### Option 2: Manual PR
 
@@ -84,6 +84,15 @@ The badge uses the gryphon SVG (`gryphon.svg`).
 To enable automatic PR creation from the on-site form, set these environment variables in your deployment platform:
 
 - `GITHUB_TOKEN`: GitHub token with `contents:write` and `pull_requests:write` on this repo.
+
+## Auto-merge behavior (form submissions only)
+
+- Only PRs created by the site form flow are eligible for auto-merge.
+- Auto-merge requires:
+  - PR is open, non-draft, and mergeable
+  - check run named `Vercel` is `completed` + `success`
+- Merge method is squash.
+- Manual PRs are unchanged and remain maintainer-reviewed.
 
 ## Attribution
 
