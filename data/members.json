@@ -417,6 +417,17 @@
         "github": "https://github.com/Majd-Dayoub"
       },
       "role": "Software Engineer"
+    },
+    {
+      "name": "Fawaz Rizwan",
+      "year": 2027,
+      "website": "https://fawaz-rizwan.vercel.app/",
+      "links": {
+        "instagram": "",
+        "twitter": "",
+        "linkedin": "https://www.linkedin.com/in/fawazriz/",
+        "github": "https://github.com/fawazriz"
+      }
     }
   ]
 }
