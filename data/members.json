@@ -452,6 +452,18 @@
         "github": ""
       },
       "role": "SWE Intern @ OMERS"
+    },
+    {
+      "name": "Aarib",
+      "year": 2028,
+      "website": "https://aarib-sami.vercel.app/",
+      "links": {
+        "instagram": "",
+        "twitter": "",
+        "linkedin": "",
+        "github": "https://github.com/aarib-sami"
+      },
+      "role": "Software Dev @ Candescent"
     }
   ]
 }
