@@ -94,15 +94,50 @@ jobs:
               per_page: 100,
             });
 
-            const vercelCheck = checks.data.check_runs.find((c) => c.name === 'Vercel');
-            if (!vercelCheck) {
-              core.info(`No check run named "Vercel" found for PR #${prNumber}. Skipping.`);
-              return;
+            const vercelCheckRuns = checks.data.check_runs.filter((c) => {
+              const name = (c.name || '').toLowerCase();
+              const appSlug = (c.app?.slug || '').toLowerCase();
+              return appSlug === 'vercel' || name.includes('vercel');
+            });
+
+            const successfulVercelCheckRun = vercelCheckRuns.find(
+              (c) => c.status === 'completed' && c.conclusion === 'success'
+            );
+
+            let vercelGatePassed = Boolean(successfulVercelCheckRun);
+            if (successfulVercelCheckRun) {
+              core.info(
+                `Vercel check run passed: name="${successfulVercelCheckRun.name}", conclusion=${successfulVercelCheckRun.conclusion}`
+              );
+            } else {
+              // Fallback: some setups expose Vercel as commit statuses, not check runs.
+              const statuses = await github.rest.repos.listCommitStatusesForRef({
+                owner,
+                repo,
+                ref: headSha,
+                per_page: 100,
+              });
+
+              const vercelStatuses = statuses.data.filter((s) =>
+                (s.context || '').toLowerCase().includes('vercel')
+              );
+              const successfulVercelStatus = vercelStatuses.find((s) => s.state === 'success');
+
+              if (successfulVercelStatus) {
+                vercelGatePassed = true;
+                core.info(
+                  `Vercel status passed: context="${successfulVercelStatus.context}", state=${successfulVercelStatus.state}`
+                );
+              } else {
+                core.info(
+                  `No successful Vercel check/status found for PR #${prNumber}. check_runs=${vercelCheckRuns.length}, statuses=${vercelStatuses.length}. Skipping.`
+                );
+                return;
+              }
             }
 
-            core.info(`Vercel check status=${vercelCheck.status}, conclusion=${vercelCheck.conclusion}`);
-            if (vercelCheck.status !== 'completed' || vercelCheck.conclusion !== 'success') {
-              core.info('Vercel check is not successful yet. Skipping.');
+            if (!vercelGatePassed) {
+              core.info('Vercel gate did not pass. Skipping.');
               return;
             }
 
