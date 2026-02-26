@@ -488,6 +488,18 @@
         "github": ""
       },
       "role": "Finance & AI Engineer"
+    },
+    {
+      "name": "Tomas Fickert",
+      "year": 2028,
+      "website": "https://github.com/tomasf12",
+      "links": {
+        "instagram": "",
+        "twitter": "",
+        "linkedin": "https://www.linkedin.com/in/tomas-fickert/",
+        "github": ""
+      },
+      "role": "SWE @ Asymmetric Capital"
     }
   ]
 }
