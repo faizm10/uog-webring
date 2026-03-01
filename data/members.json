@@ -545,6 +545,18 @@
         "linkedin": "https://www.linkedin.com/in/tony-tran-a08b8a230/",
         "github": ""
       }
+    },
+    {
+      "name": "Adina Mubbashir",
+      "year": 2026,
+      "website": "https://adina-mubbashir.netlify.app/",
+      "links": {
+        "instagram": "",
+        "twitter": "",
+        "linkedin": "",
+        "github": ""
+      },
+      "role": "SWE @ Shopify"
     }
   ]
 }
