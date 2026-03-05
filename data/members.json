@@ -568,6 +568,18 @@
         "linkedin": "https://linkedin.com/ayaannshaikhh",
         "github": "https://github.com/ayaannshaikhh"
       }
+    },
+    {
+      "name": "Kevin Whitlock",
+      "year": 2023,
+      "website": "https://www.kevinwhitlock.com/",
+      "links": {
+        "instagram": "",
+        "twitter": "",
+        "linkedin": "https://www.linkedin.com/in/kevin-james-whitlock",
+        "github": ""
+      },
+      "role": "Senior SDE @ Cognition Controls"
     }
   ]
 }
