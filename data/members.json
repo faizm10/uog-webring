@@ -652,6 +652,18 @@
         "github": "https://github.com/JosephAcernese"
       },
       "role": "SWE @ Distributive"
+    },
+    {
+      "name": "Zain Najeeb",
+      "year": 2027,
+      "website": "https://github.com/Zain-Najeeb",
+      "links": {
+        "instagram": "",
+        "twitter": "",
+        "linkedin": "https://www.linkedin.com/in/m-zainnajeeb/",
+        "github": ""
+      },
+      "role": "SWE intern @ Tesla"
     }
   ]
 }
