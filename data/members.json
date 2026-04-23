@@ -628,6 +628,18 @@
         "github": ""
       },
       "role": "SWE @ Freedom Mobile"
+    },
+    {
+      "name": "David Solus",
+      "year": 2023,
+      "website": "https://www.linkedin.com/in/david-solus/",
+      "links": {
+        "instagram": "",
+        "twitter": "",
+        "linkedin": "https://www.linkedin.com/in/david-solus/",
+        "github": "https://github.com/DavidSolus"
+      },
+      "role": "SDE 2 @ Arctic Wolf"
     }
   ]
 }
